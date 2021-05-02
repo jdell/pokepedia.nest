@@ -22,7 +22,7 @@ export class PokemonProvider {
   private readonly BASE_URL = 'https://pokeapi.co/api/v2';
   constructor(private http: HttpService) {}
 
-  async get(name: string): Promise<Pokemon | null> {
+  async get(name: string): Promise<Pokemon> {
     const specie: PokemonSpecie = await this.http
       .get(`${this.BASE_URL}/pokemon/${name}`)
       .pipe(map((response) => response.data as { species: NamedApi }))
@@ -31,6 +31,8 @@ export class PokemonProvider {
         map((response) => response.data),
       )
       .toPromise();
+
+    // Selecting the first english-flavor or the the first one if no english
     const flavor =
       specie.flavor_text_entries.find((item) => item.language.name === 'en') ||
       specie.flavor_text_entries[0];

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Pokemon } from '../models/pokemon.model';
 
 import { PokemonProvider } from '../providers/pokemon.provider';
-import { TranslationContextService } from 'src/translation/translation-context.service';
+import { TranslationContextService } from '../translation/services/translation-context.service';
 
 @Injectable()
 export class PokemonService {

@@ -10,7 +10,7 @@ export class PokemonController {
   async get(@Param('name') name: string): Promise<Pokemon> {
     try {
       return await this.pokemonService.getByName(name);
-    } catch (error) {
+    } catch {
       throw new NotFoundException(`${name} not found in the Pokepedia`);
     }
   }
@@ -19,7 +19,7 @@ export class PokemonController {
   async getTranslated(@Param('name') name: string): Promise<Pokemon> {
     try {
       return await this.pokemonService.getByName(name, true);
-    } catch (error) {
+    } catch  {
       throw new NotFoundException(`${name} not found in the Pokepedia`);
     }
   }
@@ -33,7 +33,7 @@ export class Pokemonv2Controller{
   async get(@Param('name') name: string, @Headers('translate') translate: boolean): Promise<Pokemon> {
     try {
       return await this.pokemonService.getByName(name, translate);
-    } catch (error) {
+    } catch {
       throw new NotFoundException(`${name} not found in the Pokepedia`);
     }
   }

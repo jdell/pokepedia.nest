@@ -1,6 +1,6 @@
 import { HttpService, Injectable } from '@nestjs/common';
 import { map } from 'rxjs/operators';
-import { FunTranslationResponse } from './fun-translation.response';
+import { FunTranslationResponse } from '../models/fun-translation.response';
 import { TranslationService } from './translation.interface';
 
 @Injectable()
@@ -23,7 +23,7 @@ export class ShakespeareTranslationService implements TranslationService {
         )
         .toPromise();
       return translation;
-    } catch {
+    } catch(err) {
       return text;
     }
   }

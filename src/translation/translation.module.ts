@@ -1,7 +1,7 @@
 import { HttpModule, Module } from '@nestjs/common';
-import { ShakespeareTranslationService } from './shakespeare-translation.service';
-import { TranslationContextService } from './translation-context.service';
-import { YodaTranslationService } from './yoda-translation.service';
+import { ShakespeareTranslationService } from './services/shakespeare-translation.service';
+import { TranslationContextService } from './services/translation-context.service';
+import { YodaTranslationService } from './services/yoda-translation.service';
 
 @Module({
   imports: [HttpModule],
