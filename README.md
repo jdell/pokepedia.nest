@@ -1,53 +1,24 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+A couple of weeks ago I was wondering what new things were in the Nodejs space. I started reading about some frameworks and discovered [Nest](https://github.com/nestjs/nest) - a Typescript-based framework that looked promising. I said to myself: "that looks amazing, now I just need a free weekend and a funny project". I just have had it both.
 
-## Installation
+So here it is, my first Nest project: a Pokepedia.  
+
+
+Once run -using npm or docker-, go to `http://localhost:3000` to get information about the endpoints.
+  
+## Running the app via Node/Npm
+
+Please make sure you have your [Node and NPM](https://www.npmjs.com/get-npm) environment properly set.
+
 
 ```bash
+# installing dependencies
 $ npm install
-```
 
-## Running the app
-
-```bash
-# development
+# running the app
 $ npm run start
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Test
-
-```bash
 # unit tests
 $ npm run test
 
@@ -56,18 +27,29 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
+
 ```
 
-## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Running the app via Docker
+Once you have your [Docker / Docker Compose](https://docs.docker.com/compose/install/) set, you can run:
 
-## Stay in touch
+```
+$ docker-compose up -d
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Development
+I have two modules `AppModule` and `TranslationModule`. 
 
-## License
+`TranslationModule` contains all the elements related to the translation -services, interfaces, etc-.
+`AppModule` contains all the elements related to the main app -controllers, providers, services and interfaces-.
 
-Nest is [MIT licensed](LICENSE).
+In the main module, I am calling `Provider` to a class that retrieves data -like a repository, dao, or ...-. And `Service` to the rest of classes that handles the data.
+
+## TODO list
+Here are some items I would like to complete when I get some time again:
+- [ ] Refactor translation service. My translation services can share code. Lets say, writing a new `FunTranslationService.get(path, text)` to handle the `success` cases.
+- [ ] I wrote a v2 controller to handle both use cases (`get` and `getTranslated`) using a single function. Nice. But I am using a path-versioning approach. I wanted to send the version in the header instead but didn't find a built-in decorator in Nest. Next time I will build my own.
+- [ ] The app runs in port 3000 by default (:/). It needs to be changed in order to be deployed. Btw, that is another thing I want to try: deploying a nodejs app to Firebase as Function.
+- [ ] Tests. Add more. Some services are not tested.
+- [ ] Move each class/interface to its own file. Basic.

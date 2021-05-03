@@ -22,6 +22,11 @@ export class PokemonProvider {
   private readonly BASE_URL = 'https://pokeapi.co/api/v2';
   constructor(private http: HttpService) {}
 
+  /**
+   * Retrieve a pokemon using the given name
+   * @param name pokemon name
+   * @returns pokemon
+   */
   async get(name: string): Promise<Pokemon> {
     const specie: PokemonSpecie = await this.http
       .get(`${this.BASE_URL}/pokemon/${name}`)
