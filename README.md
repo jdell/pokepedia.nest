@@ -53,3 +53,4 @@ Here are some items I would like to complete when I get some time again:
 - [ ] The app runs in port 3000 by default (:/). It needs to be changed in order to be deployed. Btw, that is another thing I want to try: deploying a nodejs app to Firebase as Function.
 - [ ] Tests. Add more. Some services are not tested.
 - [ ] Move each class/interface to its own file. Basic.
+- [ ] Have better exception handling and logging. At the moment, if the main pokemon provider fails -any reason- I am throwing a 404 exception. Also, adding Sentry would not hurt.
